@@ -38,8 +38,9 @@ class BookingController extends Controller
             return back()->with('habis', 'Tiket habis!');
         }
 
-        // $pdf = Pdf::loadView('download.ticket', compact('data'));
-        // $pdf->download('ticket-'.now().'.pdf');
+        $pdf = Pdf::loadView('download.ticket', compact('data'))->setOptions(['defaultFont' => 'sans-serif']);
+;
+        return $pdf->download('ticket-'.now().'.pdf');
 
         return back()->with('success', 'Berhasil membeli tiket!');
     }
